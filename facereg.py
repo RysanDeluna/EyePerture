@@ -39,3 +39,6 @@ while True:
   # [!!] dependendo de como é feito, a leitura dos quadrantes fica EXTREMAMENTE lenta [!!]
   # esse jeito do código ainda está numa velocidade ok porém
   print(pega_localizacoes(video_capture, face_locations, face_encodings, process_this_frame))
+
+# [!!] Eu removi enquanto limpando esse código, mas caso necessário para a prova de conceito posso colocar de novo
+# um trecho do código que mostra a imagem sendo capturada e opcionalmente um frame em volta do rosto detectado [!!]
