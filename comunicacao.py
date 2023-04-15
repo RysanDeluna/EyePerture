@@ -22,6 +22,7 @@ def identif_quad() -> int:
         kb = keyboard.read_key()
     return int(kb)
 
+# Loop que envia os quadrantes identificados ao Arduino.
 while aport:
     quadrante = bytes(identif_quad())
     #print(quadrante) #para testes
