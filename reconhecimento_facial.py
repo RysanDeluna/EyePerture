@@ -36,7 +36,7 @@ def pega_localizacoes(video_capture, face_locations, face_encodings, process_thi
         # então, *por enquanto* fica aqui mesmo.
         for (top, right, bottom, left) in face_locations:
             return(face_locations)
-    # vv acho que não é relevante, mas deixei para evitar chance do código quebrar
+    # Para o nosso projeto não é relevante, mas deixei para evitar chance do código quebrar
     # Release handle to the webcam
     video_capture.release()
     cv2.destroyAllWindows()
