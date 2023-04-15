@@ -24,7 +24,7 @@ def identif_quad() -> int:
 
 # Loop que envia os quadrantes identificados ao Arduino.
 while aport:
-    quadrante = bytes(identif_quad())
+    quadrante = bytes(str(identif_quad()),"utf-8")
     #print(quadrante) #para testes
     aport.write(quadrante)
     aport.read()
