@@ -4,6 +4,8 @@
 import serial
 import keyboard
 
+# [!!] PARA RODAR NO LINUX:
+# aport = serial.Serial('/dev/ttyUSB0', 9600, timeout=1, dsrdtr=True)
 aport = serial.Serial("COM3", 9600, timeout=1, dsrdtr=True)
 
 def identif_quad() -> int:
