@@ -7,7 +7,9 @@ import face_recognition
 import numpy as np
 import cv2
 
-#aport = serial.Serial('/dev/ttyUSB0', 9600)
+# [!!] PARA RODAR NO LINUX, SUBSTITUIR LINHA 12 POR:
+# aport = serial.Serial('/dev/ttyUSB0', 9600, timeout=1, dsrdtr=True)
+aport = serial.Serial("COM3", 9600, timeout=1, dsrdtr=True)
 video_capture = cv2.VideoCapture(0)
 face_locations = []
 face_encodings = []
