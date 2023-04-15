@@ -37,10 +37,13 @@ def identif_quadrantes(face_locations):
     return quadrante
 
 while True:
-    local_face = identif_quad(video_capture, face_locations, face_encodings, process_this_frame)
-    quadrante = bytes(local_face)
-    print(quadrante)
+    # Pega as localizações da face
+    local_face = pega_localizacoes(video_capture, face_locations, face_encodings, process_this_frame)
+    # Passa para o quadrante adequado e converte para byte
+    quadrante = bytes(str(identif_quad(local_face)),"utf-8")
+    print(quadrante) # Para testes
+    # Envia ao Arduino
     aport.write(quadrante)
     aport.read()
-    
+
 # [!!] Não testei NADA disso, é só um rascunho~planejamento.
