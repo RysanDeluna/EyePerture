@@ -23,22 +23,15 @@ def pega_localizacoes(video_capture, face_locations, face_encodings, process_thi
         for (top, right, bottom, left) in face_locations:
             # [!!] eu sei que não faz sentido o return aqui, mas por *algum* motivo buga se tento fora desse for [!!]
             return(face_locations)
-            # vv não sei se é relevante no nosso caso
-            # Scale back up face locations since the frame we detected in was scaled to 1/4 size
-            #top *= 4
-            #right *= 4
-            #bottom *= 4
-            #left *= 4
     # vv acho que não é relevante, mas deixei para evitar chance do código quebrar
     # Release handle to the webcam
     video_capture.release()
     cv2.destroyAllWindows()
 
 while True:
-  # print é só para testes, eu juntar comunicacao.py com esse faço a integração certinha
-  # [!!] dependendo de como é feito, a leitura dos quadrantes fica EXTREMAMENTE lenta [!!]
+  # dependendo de como é feito o código, a leitura dos quadrantes fica lenta 
   # esse jeito do código ainda está numa velocidade ok porém
-  print(pega_localizacoes(video_capture, face_locations, face_encodings, process_this_frame))
+  print(pega_localizacoes(video_capture, face_locations, face_encodings, process_this_frame)) #print para teste
 
 # [!!] Eu removi enquanto limpando esse código, mas caso necessário para a prova de conceito posso colocar de novo
 # um trecho do código que mostra a imagem sendo capturada e opcionalmente um frame em volta do rosto detectado [!!]
