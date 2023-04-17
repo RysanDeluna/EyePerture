@@ -21,7 +21,8 @@ void setup() {
 void loop() {
   if (Serial.available() > 0)
   {
-    quadrante = Serial.parseInt();
+    quadrante = Serial.read();
+    printf("%d", quadrante);
     switch (quadrante)
     {
       case 1:
@@ -32,7 +33,7 @@ void loop() {
         Serial.println("ESQUERDA");
         delay(250); digitalWrite(MOTOR_X_ESQUERDA, LOW); // simula a situção de que o motor está realizando o movimento
         digitalWrite(MOTOR_Y_CIMA, HIGH); Serial.println("CIMA");
-        delay(250); digitalWrite(MOTOR_Y_CIMA, HIGH);
+        delay(250); digitalWrite(MOTOR_Y_CIMA, LOW);
         break;
       case 2:
         digitalWrite(MOTOR_X_DIREITA, HIGH); Serial.println("DIREITA");
