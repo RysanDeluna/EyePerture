@@ -1,6 +1,7 @@
 # EyePerture
 
 ![eyeperture (1)](https://user-images.githubusercontent.com/100282290/234154712-99ba634e-d0be-40a6-90b3-62069443358f.png)
+![eyeperture (2)](https://user-images.githubusercontent.com/100282290/234154806-89fdc52b-1dc6-4119-9ae6-3c4fb644d7bf.png)
 
 * `ard.c`: código do arduino
 * `comunicacao.py`: código da comunicação entre Arduino e código Python
