@@ -33,12 +33,14 @@ def pega_localizacoes(video_capture, face_locations, face_encodings, process_thi
         # Entretanto, no momento está contido nela o return da função.
         # [!!] Eu sei e concordo que não faz sentido o return aqui, mas por *algum* motivo buga se tento fora dele,
         # então, *por enquanto* fica aqui mesmo.
-        for (top, right, bottom, left) in face_locations:
-            return(face_locations)
+        return face_locations
+
     # Para o nosso projeto não é relevante, mas deixei para evitar chance do código quebrar
     # Release handle to the webcam
     video_capture.release()
     cv2.destroyAllWindows()
+
+
 
 while True:  
   print(pega_localizacoes(video_capture, face_locations, face_encodings, process_this_frame)) #print para teste
