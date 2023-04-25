@@ -5,12 +5,12 @@ import serial
 import keyboard
 
 # [!!] PARA RODAR NO LINUX:
-# aport = serial.Serial('/dev/ttyUSB0', 9600, timeout=1, dsrdtr=True)
+aport = serial.Serial('/dev/ttyACM0', 9600, timeout=1, dsrdtr=True)
 
 # Get a reference to webcam #0 (the default one)
 # Para corrigir o problema do loop, dsrdtr foi configurada como True:
 ### dsrdtr (bool) – Enable hardware (DSR/DTR) flow control.
-aport = serial.Serial("COM3", 9600, timeout=1, dsrdtr=True)
+# aport = serial.Serial("COM3", 9600, timeout=1, dsrdtr=True)
 
 # Função temporária apenas para a prova de conceito que registra
 # os dígitos de 1-4 quando pressionados no teclado, representando os quadrantes.
@@ -24,7 +24,8 @@ def identif_quad() -> int:
 
 # Loop que envia os quadrantes identificados ao Arduino.
 while aport:
-    quadrante = bytes(str(identif_quad()),"utf-8")
-    #print(quadrante) #para testes
+    quadrante = identif_quad()
+    quadrante = quadrante.to_bytes(2,"big")
+    print(f"{quadrante} e {type(quadrante)}") #para testes
     aport.write(quadrante)
-    aport.read()
+    
