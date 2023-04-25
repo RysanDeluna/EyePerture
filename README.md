@@ -1,5 +1,7 @@
 # EyePerture
 
+![](eyeperture (1).png) 
+
 * `ard.c`: código do arduino
 * `comunicacao.py`: código da comunicação entre Arduino e código Python
   * Futuramente, reconhecimento_facial.py estará dentro dessa função
