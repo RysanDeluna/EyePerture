@@ -15,3 +15,4 @@
  * pip install opencv-python
  * pip install face_recognition
 * Retorna a tupla face_locations, que, por sua vez, tem o valor [top, right, bottom, left]
+* [Vídeo de como o código retorna no Windows corretamente configurado](https://www.youtube.com/watch?v=aURCHOb-zgo)
