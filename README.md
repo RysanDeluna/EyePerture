@@ -1,6 +1,6 @@
 # EyePerture
 
-![](eyeperture (1).png) 
+<img href="https://github.com/RysanDeluna/EyePerture/blob/main/eyeperture%20(1).png" height="400"/>
 
 * `ard.c`: código do arduino
 * `comunicacao.py`: código da comunicação entre Arduino e código Python
