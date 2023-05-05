@@ -24,16 +24,27 @@ def encontra_rosto(video_capture, PROCESS_FRAME):
         cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0,0,255), cv2.FILLED)
     
     cv2.imshow('Video', frame)
-    return face_locations, PROCESS_FRAME, small_frame.shape
+    try:
+        return face_locations, PROCESS_FRAME, small_frame.shape
+    except:
+        return face_locations, PROCESS_FRAME, 0
 
-def identifica_quadrantes(face_locations, imgs_shape):
-    x = face_locations[3] - face_locations[1]
-    y = face_locations[2] - face_locations[0]
-
+def identifica_quadrantes(face_locations):
+    try:
+        top, right, bottom, left = face_locations[0] 
+    except:
+        return 0
+    if top <= bottom and left <= right:
+        return 1
+    elif top <= bottom and left > right:
+        return 2
+    elif top > bottom and left > right:
+        return 3
+    elif top > bottom and left <= right:
+        return 4
     
-
 if __name__ == "__main__":
-    aport = serial.Serial('/dev/ttyACM0', 9600, timeout=1, dsrdtr=True)
+#    aport = serial.Serial('/dev/ttyACM0', 9600, timeout=1, dsrdtr=True)
     video_capture = cv2.VideoCapture(0)
     PROCESS_FRAME = True
 
@@ -41,10 +52,6 @@ if __name__ == "__main__":
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         face_locations, PROCESS_FRAME, shape = encontra_rosto(video_capture, PROCESS_FRAME)
-    
-    
-    
-
-
+        print(identifica_quadrantes(face_locations))
     video_capture.release()
     cv2.destroyAllWindows()

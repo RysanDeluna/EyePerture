@@ -28,8 +28,6 @@ def pega_localizacoes(video_capture, face_locations, face_encodings, process_thi
     video_capture.release()
     cv2.destroyAllWindows()
 
-# Alguma função (ou outra coisa, só estou marcando por organizacão) que converta as localizações contidas na tupla
-# em seu quadrante equivalente adequado
 def identif_quadrantes(face_locations, img_shape):
     x = face_locations[3] - face_locations[1]
     y = face_locations[2] - face_locations[0]
@@ -47,10 +45,7 @@ def identif_quadrantes(face_locations, img_shape):
         return 3
     elif coord[0] > center[0] and coord[1] > center[1]:
         return 4
-
-
-    quadrante = -1 
-    return quadrante
+    return -1
 
 while True:
     # Pega as localizações da face
@@ -62,4 +57,3 @@ while True:
     aport.write(quadrante)
     aport.read()
 
-# [!!] Não testei NADA disso, é só um rascunho~planejamento.
