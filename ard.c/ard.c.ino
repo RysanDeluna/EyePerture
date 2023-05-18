@@ -1,62 +1,65 @@
-// #include <Servo.h>
-// #define MOTOR_X 12
-// #define MOTOR_Y 13
+#include <Servo.h>
+#define MOTOR_X_PORT 12
+#define MOTOR_Y_PORT 13
 
-#define MOTOR_X_ESQUERDA 12
-#define MOTOR_X_DIREITA 13
-#define MOTOR_Y_BAIXO 7
-#define MOTOR_Y_CIMA 8
-
+//#define MOTOR_X_ESQUERDA 12
+//#define MOTOR_X_DIREITA 13
+//#define MOTOR_Y_BAIXO 7
+//#define MOTOR_Y_CIMA 8
+ 
 int quadrante;
+char rc[2] = {'0','\0'};
+Servo motor_x, motor_y;
+int angulo_x, angulo_y;
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(MOTOR_X_ESQUERDA, OUTPUT);
-  pinMode(MOTOR_Y_CIMA, OUTPUT);
-  pinMode(MOTOR_X_DIREITA, OUTPUT);
-  pinMode(MOTOR_Y_BAIXO, OUTPUT);
+  angulo_x = 0; angulo_y = 0;
+  
+  motor_x.attach(MOTOR_X_PORT);
+  motor_y.attach(MOTOR_Y_PORT);
+  
   Serial.begin(9600);
 }
 
 void loop() {
   if (Serial.available() > 0)
   {
-    quadrante = Serial.read();
-    printf("%d", quadrante);
+    rc[0] = Serial.read();
+    quadrante = atoi(rc);
     switch (quadrante)
     {
       case 1:
-        // MOTOR_X.write(angulo_de_giro);
-        // MOTOR_Y.write(angulo_de_giro);
-        
-        digitalWrite(MOTOR_X_ESQUERDA, HIGH);  // move primeiro para esquerda;
-        Serial.println("ESQUERDA");
-        delay(250); digitalWrite(MOTOR_X_ESQUERDA, LOW); // simula a situção de que o motor está realizando o movimento
-        digitalWrite(MOTOR_Y_CIMA, HIGH); Serial.println("CIMA");
-        delay(250); digitalWrite(MOTOR_Y_CIMA, LOW);
+        angulo_x = angulo_x - 10;
+        motor_x.write(angulo_x);
+          Serial.println("ESQUERDA");
+        angulo_y = angulo_y + 10;
+        motor_y.write(angulo_y);
+          Serial.println("CIMA");
         break;
       case 2:
-        digitalWrite(MOTOR_X_DIREITA, HIGH); Serial.println("DIREITA");
-        delay(250); digitalWrite(MOTOR_X_DIREITA, LOW); 
-        digitalWrite(MOTOR_Y_CIMA, HIGH); Serial.println("CIMA");
-        delay(250); digitalWrite(MOTOR_Y_CIMA, LOW); 
+        angulo_x = angulo_x + 10;
+        motor_x.write(angulo_x);
+        angulo_y = angulo_y + 10;
+        motor_y.write(angulo_y);
         break;
       case 3:
-        digitalWrite(MOTOR_X_ESQUERDA, HIGH); Serial.println("ESQUERDA");
-        delay(250); digitalWrite(MOTOR_X_ESQUERDA, LOW);
-        digitalWrite(MOTOR_Y_BAIXO, HIGH); Serial.println("BAIXO");
-        delay(250); digitalWrite(MOTOR_Y_BAIXO, LOW); 
+        angulo_x = angulo_x + 10;
+        motor_x.write(angulo_x);
+        angulo_y = angulo_y - 10;
+        motor_y.write(angulo_y);
         break;
       case 4:
-        digitalWrite(MOTOR_X_DIREITA, HIGH); Serial.println("DIREITA");
-        delay(250); digitalWrite(MOTOR_X_DIREITA, LOW);
-        digitalWrite(MOTOR_Y_BAIXO, HIGH); Serial.println("BAIXO");
-        delay(250); digitalWrite(MOTOR_Y_BAIXO, LOW);
+        angulo_x = angulo_x - 10;
+        motor_x.write(angulo_x);
+        angulo_y = angulo_y - 10;
+        motor_y.write(angulo_y);
         break;
       default:
         break;
     }
   }
+  else Serial.println("Fail");
   quadrante = -1;
-  delay(1000);  // a cada segundo será checado
+  delay(500);  // a cada segundo será checado
 }
